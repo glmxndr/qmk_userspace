@@ -34,17 +34,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NUMBERS] = LAYOUT_split_3x6_5_hlc(
-      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_NO,
-      _______, S_1,     G_2,     A_3,     C_4,     KC_5,                                             KC_6,    C_7,     A_8,     G_9,     S_0,     KC_NO,
-      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   _______, _______,      _______, _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      _______, KC_F12,  KC_F11,  KC_F10,  KC_F9,   KC_PERC,                                          KC_LT, KC_7,    KC_8,    KC_9,    KC_PLUS, KC_ASTR,
+      _______, S_F8,    G_F7,    A_F6,    C_F5,    KC_0,                                             KC_0,  C_4,     A_5,     G_6,     S_DOT,   KC_MINS,
+      _______, KC_F4,   KC_F3,   KC_F2,   KC_F1,   KC_COMM, _______, _______,      _______, _______, KC_GT, KC_1,    KC_2,    KC_3,    KC_EQL,  KC_SLSH,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
                                  KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO
     ),
 
     [_ARROWS] = LAYOUT_split_3x6_5_hlc(
-      _______, KC_PASTE,KC_NO,   KC_CUT,  KC_COPY, KC_NO,                                            KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_NO,   KC_NO,
-      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_NO,                                            KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO,   KC_NO,
-      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO  , QK_BOOT, _______, _______,      _______, _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      _______, KC_PASTE,KC_NO,   KC_CUT,  KC_COPY, KC_NO,                                            KC_NO,   KC_PGUP, KC_UP,   KC_END,  KC_NO,   KC_NO,
+      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_NO,                                            KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  KC_NO,
+      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO  , QK_BOOT, _______, _______,      _______, _______, KC_NO,   KC_PGDN, KC_NO,   KC_NO,   KC_NO,   KC_NO,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
                                  KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO
     ),

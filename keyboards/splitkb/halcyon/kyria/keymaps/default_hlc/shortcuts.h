@@ -19,12 +19,13 @@
 
 #define A_2       ALT_T(KC_2)
 #define A_3       ALT_T(KC_3)
+#define A_5       ALT_T(KC_5)
 #define A_8       ALT_T(KC_8)
 #define A_COMM    ALT_T(KC_COMM)
 #define A_D       ALT_T(KC_D)
 #define A_DOT     ALT_T(KC_DOT)
 #define A_F5      ALT_T(KC_F5)
-#define A_F5      ALT_T(KC_F5)
+#define A_F6      ALT_T(KC_F6)
 #define A_K       ALT_T(KC_K)
 #define A_P5      ALT_T(KC_P5)
 #define A_QUOT    ALT_T(KC_QUOT)
@@ -35,7 +36,7 @@
   
 #define A_LEFT    LALT(KC_LEFT)
 #define A_RGHT    LALT(KC_RIGHT)
-  
+
 #define C_1       CTL_T(KC_1)
 #define C_4       CTL_T(KC_4)
 #define C_7       CTL_T(KC_7)
@@ -43,6 +44,7 @@
 #define C_DOT     CTL_T(KC_DOT)
 #define C_EQL     CTL_T(KC_EQL)
 #define C_F       CTL_T(KC_F)
+#define C_F5      CTL_T(KC_F5)
 #define C_F6      CTL_T(KC_F6)
 #define C_J       CTL_T(KC_J)
 #define C_LBRK    CTL_T(KC_LBRK) 
@@ -54,9 +56,11 @@
   
 #define G_2       GUI_T(KC_2)
 #define G_3       GUI_T(KC_3)
+#define G_6       GUI_T(KC_6)
 #define G_9       GUI_T(KC_9)
 #define G_BSLS    GUI_T(KC_BSLS)
 #define G_F4      GUI_T(KC_F4)
+#define G_F7      GUI_T(KC_F7)
 #define G_GRV     GUI_T(KC_GRV)
 #define G_L       GUI_T(KC_L)
 #define G_P6      GUI_T(KC_P6)
@@ -66,6 +70,8 @@
 #define S_0       SFT_T(KC_0)
 #define S_1       SFT_T(KC_1)
 #define S_A       SFT_T(KC_A)
+#define S_DOT     SFT_T(KC_DOT)
+#define S_F8      SFT_T(KC_F8)
 #define S_GRV     SFT_T(KC_GRV)
 #define S_MINS    SFT_T(KC_MINS)
 #define S_PMNS    SFT_T(KC_PMNS)
