@@ -46,14 +46,14 @@
                       k3E, k3C, k3B, k3F, k3A,      k8A, k8F, k8B, k8C, k8E,                   \
                       k4A, k4B, k4C, k4D, k4E,      k9A, k9B, k9C, k9D, k9E                    \
 ) { \
-    {KC_NO, k0B, k0C, k0D, k0E, k0F, k0G}, \
-    {KC_NO, k1B, k1C, k1D, k1E, k1F, k1G}, \
-    {k2A, k2B, k2C, k2D, k2E, k2F, k2G}, \
-    {k3A, k3B, k3C, k3D, k3E, k3F, KC_NO}, \
-    {k4A, k4B, k4C, k4D, k4E, KC_NO, KC_NO}, \
-    {KC_NO, k5B, k5C, k5D, k5E, k5F, k5G}, \
-    {KC_NO, k6B, k6C, k6D, k6E, k6F, k6G}, \
-    {k7A, k7B, k7C, k7D, k7E, k7F, k7G}, \
-    {k8A, k8B, k8C, k8D, k8E, k8F, KC_NO}, \
-    {k9A, k9B, k9C, k9D, k9E, KC_NO, KC_NO} \
+    {KC_NO, k0B, k0C, k0D, k0E, k0F,   k0G}, \
+    {KC_NO, k1B, k1C, k1D, k1E, k1F,   k1G}, \
+    {k2A,   k2B, k2C, k2D, k2E, k2F,   k2G}, \
+    {k3A,   k3B, k3C, k3D, k3E, k3F,   KC_NO}, \
+    {k4A,   k4B, k4C, k4D, k4E, KC_NO, KC_NO}, \
+    {KC_NO, k5B, k5C, k5D, k5E, k5F,   k5G}, \
+    {KC_NO, k6B, k6C, k6D, k6E, k6F,   k6G}, \
+    {k7A,   k7B, k7C, k7D, k7E, k7F,   k7G}, \
+    {k8A,   k8B, k8C, k8D, k8E, k8F,   KC_NO}, \
+    {k9A,   k9B, k9C, k9D, k9E, KC_NO, KC_NO} \
 }

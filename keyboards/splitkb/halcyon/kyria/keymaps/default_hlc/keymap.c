@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 
+#include "shortcuts.h"
+
 enum layers {
     _BASE = 0,
     _SYMBOLS,
@@ -11,137 +13,6 @@ enum layers {
     _I3WM,
 };
 
-#define LEADER QK_LEAD
-
-#define _____ KC_TRANSPARENT
-
-#define TO_BAS TO(_BASE)
-#define TO_SYM TO(_SYMBOLS)
-#define TO_ARR TT(_ARROWS)
-#define TO_MSE TT(_MOUSE)
-#define I3_MENU LT(_I3WM,KC_MENU)
-
-#define ARR_TAB LT(_ARROWS, KC_TAB)
-#define MOU_SPC LT(_MOUSE, KC_SPC)
-#define PAD_ENT LT(_NUMBERS, KC_ENT)
-#define SYM_ESC LT(_SYMBOLS, KC_ESC)
-#define NUM_RGHT LT(_NUMBERS, KC_RIGHT)
-#define SYM_BSP LT(_SYMBOLS, KC_BSPC)
-#define MED_ESC LT(_MEDIA, KC_ESC)
-#define SPE_LFT LT(_SPECIAL, KC_LEFT)
-
-
-#define S_A  SFT_T(KC_A)
-#define G_S  GUI_T(KC_S)
-#define A_D  ALT_T(KC_D)
-#define C_F  CTL_T(KC_F)
-
-#define S_SC  SFT_T(KC_SCLN)
-#define G_L  GUI_T(KC_L)
-#define A_K  ALT_T(KC_K)
-#define C_J  CTL_T(KC_J)
-
-#define S_RBKT SFT_T(KC_RBRACKET)
-#define G_LBKT GUI_T(KC_LBRACKET)
-#define A_DOT  ALT_T(KC_DOT)
-#define C_COMM CTL_T(KC_COMMA)
-
-#define G_F4  GUI_T(KC_F4)
-#define A_F5  ALT_T(KC_F5)
-#define C_F6  CTL_T(KC_F6)
-
-#define S_MINS SFT_T(KC_MINS)
-#define G_3    GUI_T(KC_3)
-#define A_2    ALT_T(KC_2)
-#define C_1    CTL_T(KC_1)
-
-#define S_INS LSFT(KC_INSERT)
-#define C_INS LCTL(KC_INSERT)
-
-#define G_GRV GUI_T(KC_GRV)
-#define A_QUOT ALT_T(KC_QUOT)
-#define C_EQL CTL_T(KC_EQL)
-#define C_RBRC CTL_T(KC_RBRC)
-#define A_SLSH ALT_T(KC_SLSH)
-#define G_BSLS GUI_T(KC_BSLS)
-
-#define WM_1 LGUI(KC_F1)
-#define WM_2 LGUI(KC_F2)
-#define WM_3 LGUI(KC_F3)
-#define WM_4 LGUI(KC_F4)
-#define WM_5 LGUI(KC_F5)
-#define WM_6 LGUI(KC_F6)
-#define WM_7 LGUI(KC_F7)
-#define WM_8 LGUI(KC_F8)
-#define WM_9 LGUI(KC_F9)
-#define WM_0 LGUI(KC_F10)
-#define WM_S1 SGUI(KC_F1)
-#define WM_S2 SGUI(KC_F2)
-#define WM_S3 SGUI(KC_F3)
-#define WM_S4 SGUI(KC_F4)
-#define WM_S5 SGUI(KC_F5)
-#define WM_S6 SGUI(KC_F6)
-#define WM_S7 SGUI(KC_F7)
-#define WM_S8 SGUI(KC_F8)
-#define WM_S9 SGUI(KC_F9)
-#define WM_S0 SGUI(KC_F10)
-
-#define WM_LEFT LGUI(KC_LEFT)
-#define WM_RGHT LGUI(KC_RGHT)
-#define WM_UP   LGUI(KC_UP)
-#define WM_DOWN LGUI(KC_DOWN)
-#define WM_SLEFT SGUI(KC_LEFT)
-#define WM_SRGHT SGUI(KC_RGHT)
-#define WM_SUP   SGUI(KC_UP)
-#define WM_SDOWN SGUI(KC_DOWN)
-
-#define WM_ENT LGUI(KC_ENT)
-#define WM_SPC LGUI(KC_SPC)
-
-#define WM_H LGUI(KC_H)
-#define WM_V LGUI(KC_V)
-#define WM_Z LGUI(KC_Z)
-#define WM_E LGUI(KC_E)
-#define WM_S LGUI(KC_S)
-#define WM_D LGUI(KC_D)
-#define WM_F SGUI(KC_F)
-
-#define WM_SE SGUI(KC_E)
-#define WM_SR SGUI(KC_R)
-#define WM_SC SGUI(KC_C)
-#define WM_SQ SGUI(KC_Q)
-#define WM_SA SGUI(KC_A)
-#define WM_SV SGUI(KC_V)
-#define WM_SSPC SGUI(KC_SPC)
-
-#define S_1 SFT_T(KC_1)
-#define G_2 GUI_T(KC_2)
-#define A_3 ALT_T(KC_3)
-#define C_4 CTL_T(KC_4)
-#define S_0 SFT_T(KC_0)
-#define G_9 GUI_T(KC_9)
-#define A_8 ALT_T(KC_8)
-#define C_7 CTL_T(KC_7)
-
-#define G_GRV GUI_T(KC_GRV)
-#define A_QUOT ALT_T(KC_QUOT)
-#define C_EQL CTL_T(KC_EQL)
-#define C_RBRC CTL_T(KC_RBRC)
-#define A_SLSH ALT_T(KC_SLSH)
-#define G_BSLS GUI_T(KC_BSLS)
-
-#define G_F4 GUI_T(KC_F4)
-#define A_F5 ALT_T(KC_F5)
-#define C_F6 CTL_T(KC_F6)
-#define C_P4 CTL_T(KC_P4)
-#define A_P5 ALT_T(KC_P5)
-#define G_P6 GUI_T(KC_P6)
-#define S_PMNS SFT_T(KC_PMNS)
-
-#define A_LEFT LALT(KC_LEFT)
-#define A_RGHT LALT(KC_RIGHT)
-#define C_TAB LCTL(KC_TAB)
-#define SC_TAB LCTL(LSFT(KC_TAB))
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -155,9 +26,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_SYMBOLS] = LAYOUT_split_3x6_5_hlc(
-      _______, KC_PERC, KC_TILD, KC_DQUO, KC_PLUS, KC_ASTR,                                          KC_LPRN, KC_RPRN, KC_UNDS, KC_PIPE, KC_LT,   KC_NO,
-      _______, KC_CIRC, G_GRV,   A_QUOT,  C_EQL,   KC_MINS,                                          KC_LBRC, C_RBRC,  A_SLSH,  G_BSLS,  KC_GT,   KC_NO,
-      _______, _______, KC_AMPR, KC_DLR,  KC_AT,   KC_HASH, _______, _______,      _______, _______, KC_LCBR, KC_RCBR, KC_QUES, KC_EXLM, KC_NO,   KC_NO,
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR , KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS,
+      _______, S_GRV,   G_SC,    A_COMM,  C_DOT,   KC_QUES,                                          KC_EQL,  C_LBRC,  A_RBRC,  G_BSLS,  S_SLSH,  KC_MINS,
+      _______, KC_TILD, KC_COLN, KC_LT,   KC_GT,   KC_EXLM, _______, _______,      _______, _______, KC_PLUS, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_DQUO,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______,
                                  KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO
     ),
