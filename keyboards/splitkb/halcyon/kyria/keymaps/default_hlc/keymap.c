@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_5_hlc(
       KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_GRAVE,
       KC_RCTL, S_A,     G_S,     A_D,     C_F,     KC_G,                                             KC_H,    C_J,     A_K,     G_L,     S_SC,    KC_QUOT,
-      LEADER,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    QK_LOCK, TO_BAS,       KC_UP,   KC_DOWN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_CIRC,
+      QK_LEAD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    QK_LOCK, TO_BAS,       KC_UP,   KC_DOWN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_CIRC,
                                  I3_MENU, ARR_TAB, MOU_SPC, PAD_ENT, MED_ESC,      SPE_LFT, NUM_RGHT,SYM_BSP, KC_DEL,  KC_INS,
                                  KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_MUTE, KC_NO,   KC_NO,   KC_NO,   KC_NO
     ),
@@ -232,13 +232,72 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ),
 };
 
+//#ifdef LEADER_ENABLE
+void leader_start_user(void) {}
 
-#ifdef LEADER_ENABLE    
 void leader_end_user(void) {
     if (leader_sequence_three_keys(KC_L, KC_G, KC_L)) {
         SEND_STRING("glmxndr");
-    } else if (leader_sequence_three_keys(KC_L, KC_G, KC_A)) {
-        SEND_STRING("gandrieu");
     }
 }
-#endif
+
+//#endif
+
+//#ifdef RGB_MATRIX_ENABLE
+#define _BASE_COLOR          0x00, 0x00, 0x00  // Black
+#define _BASE_COLOR_DIM      0x44, 0x44, 0x44  // Light gray
+
+#define _SYMBOLS_COLOR       0xFF, 0x66, 0x00  // Bright orange
+#define _SYMBOLS_COLOR_DIM   0x7F, 0x33, 0x00
+
+#define _NUMBERS_COLOR       0x00, 0x99, 0xCC  // Medium cyan blue
+#define _NUMBERS_COLOR_DIM   0x00, 0x4C, 0x66
+
+#define _ARROWS_COLOR        0x66, 0xCC, 0x33  // Lime green
+#define _ARROWS_COLOR_DIM    0x33, 0x66, 0x19
+
+#define _MOUSE_COLOR         0xCC, 0x33, 0x99  // Magenta pink
+#define _MOUSE_COLOR_DIM     0x66, 0x19, 0x4C
+
+#define _MEDIA_COLOR         0x33, 0x99, 0x66  // Teal green
+#define _MEDIA_COLOR_DIM     0x19, 0x4C, 0x33
+
+#define _SPECIAL_COLOR       0xFF, 0xCC, 0x00  // Gold/yellow
+#define _SPECIAL_COLOR_DIM   0x7F, 0x66, 0x00
+
+#define _I3WM_COLOR          0x66, 0x66, 0xFF  // Soft blue-violet
+#define _I3WM_COLOR_DIM      0x33, 0x33, 0x7F
+
+bool rgb_matrix_indicators_user(void) {
+    uint8_t current_layer = get_highest_layer(layer_state);
+    switch (current_layer) {
+        case _BASE:
+            rgb_matrix_set_color_all(_BASE_COLOR_DIM);
+            break;
+        case _SYMBOLS:
+            rgb_matrix_set_color_all(_SYMBOLS_COLOR_DIM);
+            break;
+        case _NUMBERS:
+            rgb_matrix_set_color_all(_NUMBERS_COLOR_DIM);
+            break;
+        case _ARROWS:
+            rgb_matrix_set_color_all(_ARROWS_COLOR_DIM);
+            break;
+        case _MOUSE:
+            rgb_matrix_set_color_all(_MOUSE_COLOR_DIM);
+            break;
+        case _MEDIA:
+            rgb_matrix_set_color_all(_MEDIA_COLOR_DIM);
+            break;
+        case _SPECIAL:
+            rgb_matrix_set_color_all(_SPECIAL_COLOR_DIM);
+            break;
+        case _I3WM:
+            rgb_matrix_set_color_all(_I3WM_COLOR_DIM);
+            break;
+        default:
+            break;
+    }
+    return false;
+}
+//#endif

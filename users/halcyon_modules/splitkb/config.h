@@ -5,6 +5,10 @@
 
 #define SPLIT_TRANSACTION_IDS_KB MODULE_SYNC
 
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 250
+#define LEADER_NO_TIMEOUT
+
 #define SPLIT_POINTING_ENABLE
 #define POINTING_DEVICE_COMBINED
 
@@ -31,9 +35,17 @@
 #define ENCODER_A_PINS { GP23, HLC_ENCODER_A }
 #undef ENCODER_B_PINS
 #define ENCODER_B_PINS { GP22, HLC_ENCODER_B }
+
 #undef MATRIX_ROWS
 #define MATRIX_ROWS 10
-#define LAYOUT_split_3x6_5_hlc(k0G, k0F, k0E, k0D, k0C, k0B, k5B, k5C, k5D, k5E, k5F, k5G, k1G, k1F, k1E, k1D, k1C, k1B, k6B, k6C, k6D, k6E, k6F, k6G, k2G, k2F, k2E, k2D, k2C, k2B, k3D, k2A, k7A, k8D, k7B, k7C, k7D, k7E, k7F, k7G, k3E, k3C, k3B, k3F, k3A, k8A, k8F, k8B, k8C, k8E, k4A, k4B, k4C, k4D, k4E, k9A, k9B, k9C, k9D, k9E) { \
+
+#define LAYOUT_split_3x6_5_hlc( \
+    k0G, k0F, k0E, k0D, k0C, k0B,                                k5B, k5C, k5D, k5E, k5F, k5G, \
+    k1G, k1F, k1E, k1D, k1C, k1B,                                k6B, k6C, k6D, k6E, k6F, k6G, \
+    k2G, k2F, k2E, k2D, k2C, k2B,    k3D, k2A,      k7A, k8D,    k7B, k7C, k7D, k7E, k7F, k7G, \
+                      k3E, k3C, k3B, k3F, k3A,      k8A, k8F, k8B, k8C, k8E,                   \
+                      k4A, k4B, k4C, k4D, k4E,      k9A, k9B, k9C, k9D, k9E                    \
+) { \
     {KC_NO, k0B, k0C, k0D, k0E, k0F, k0G}, \
     {KC_NO, k1B, k1C, k1D, k1E, k1F, k1G}, \
     {k2A, k2B, k2C, k2D, k2E, k2F, k2G}, \

@@ -50,16 +50,16 @@ bool backlight_off = false;
 // Timeout handling
 void backlight_wakeup(void) {
     backlight_off = false;
-    backlight_enable();
-    if (get_backlight_level() == 0) {
-        backlight_level(BACKLIGHT_LEVELS);
-    }
+    //backlight_enable();
+    //if (get_backlight_level() == 0) {
+    //    backlight_level(BACKLIGHT_LEVELS);
+    //}
 }
 
 // Timeout handling
 void backlight_suspend(void) {
     backlight_off = true;
-    backlight_disable();
+    //backlight_disable();
 }
 
 void module_sync_slave_handler(uint8_t initiator2target_buffer_size, const void* initiator2target_buffer, uint8_t target2initiator_buffer_size, void* target2initiator_buffer) {

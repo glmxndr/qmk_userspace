@@ -6,8 +6,10 @@ POINTING_DEVICE_DRIVER = cirque_pinnacle_spi
 QUANTUM_PAINTER_ENABLE = yes
 QUANTUM_PAINTER_DRIVERS += st7789_spi surface
 
-BACKLIGHT_ENABLE = yes
+BACKLIGHT_ENABLE = no
 BACKLIGHT_DRIVER = pwm
+
+LEADER_ENABLE = yes
 
 VPATH += $(USER_PATH)/splitkb/
 SRC += $(USER_PATH)/splitkb/halcyon.c
