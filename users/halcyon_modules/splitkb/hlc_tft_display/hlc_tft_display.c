@@ -9,25 +9,11 @@
 // Fonts mono2
 #include "graphics/fonts/tiny-18.qff.h"
 
-// Numbers mono2
-#include "graphics/numbers/0.qgf.h"
-#include "graphics/numbers/1.qgf.h"
-#include "graphics/numbers/2.qgf.h"
-#include "graphics/numbers/3.qgf.h"
-#include "graphics/numbers/4.qgf.h"
-#include "graphics/numbers/5.qgf.h"
-#include "graphics/numbers/6.qgf.h"
-#include "graphics/numbers/7.qgf.h"
-#include "graphics/numbers/8.qgf.h"
-#include "graphics/numbers/9.qgf.h"
-#include "graphics/numbers/undef.qgf.h"
-
 static const char *caps =        "Caps";
 static const char *num =         "Num";
 static const char *scroll =      "Scroll";
 
-static painter_font_handle_t tiny_18;
-static painter_image_handle_t layer_number;
+static painter_font_handle_t dafont;
 
 static uint8_t lcd_surface_fb[SURFACE_REQUIRED_BUFFER_BYTE_SIZE(135, 240, 16)];
 
@@ -45,65 +31,60 @@ void update_display(void) {
 
     if( first_run_layer == false) {
         // Load fonts
-        tiny_18 = qp_load_font_mem(font_tiny_18);
+        // dafont = qp_load_font_mem(font_atkinson_12);
+        dafont = qp_load_font_mem(font_tiny_18);
     }
+    int line_height = dafont->line_height;
 
     if(last_led_usb_state.raw != host_keyboard_led_state().raw || first_run_led == false) {
         led_t led_usb_state = host_keyboard_led_state();
 
         led_usb_state.caps_lock   
-            ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - tiny_18->line_height * 3 - 15, tiny_18, caps,   HSV_CAPS_ON,   HSV_BLACK) 
-            : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - tiny_18->line_height * 3 - 15, tiny_18, caps,   HSV_CAPS_OFF,   HSV_BLACK);
+            ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 3 * line_height, dafont, caps,   HSV_CAPS_ON,   HSV_BLACK) 
+            : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 3 * line_height, dafont, caps,   HSV_CAPS_OFF,   HSV_BLACK);
         led_usb_state.num_lock    
-            ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - tiny_18->line_height * 2 - 10, tiny_18, num,    HSV_NUM_ON,    HSV_BLACK) 
-            : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - tiny_18->line_height * 2 - 10, tiny_18, num,    HSV_NUM_OFF,    HSV_BLACK);
+            ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 2 * line_height, dafont, num,    HSV_NUM_ON,    HSV_BLACK) 
+            : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 2 * line_height, dafont, num,    HSV_NUM_OFF,    HSV_BLACK);
         led_usb_state.scroll_lock 
-            ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - tiny_18->line_height - 5,      tiny_18, scroll, HSV_SCROLL_ON, HSV_BLACK) 
-            : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - tiny_18->line_height - 5,      tiny_18, scroll, HSV_SCROLL_OFF, HSV_BLACK);
+            ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 1 * line_height, dafont, scroll, HSV_SCROLL_ON, HSV_BLACK) 
+            : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 1 * line_height, dafont, scroll, HSV_SCROLL_OFF, HSV_BLACK);
 
         last_led_usb_state = led_usb_state;
         first_run_led = true;
     }
 
     if(last_layer_state != layer_state || first_run_layer == false) {
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 10 * line_height, dafont, " Q W E R T",   HSV_LAYER_0,   HSV_BLACK);
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 10 * line_height, dafont, "Q W E R T",   HSV_LAYER_0,   HSV_BLACK);
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 9  * line_height, dafont, "A S D F G",   HSV_LAYER_0,   HSV_BLACK);
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 8  * line_height, dafont, "Z X C V B",   HSV_LAYER_0,   HSV_BLACK);
+
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 6  * line_height, dafont, " Y U I O P '",   HSV_LAYER_0,   HSV_BLACK);
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 5  * line_height, dafont, " H J K L ; '",   HSV_LAYER_0,   HSV_BLACK);
+        qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - 4  * line_height, dafont, " N M , , / ^",   HSV_LAYER_0,   HSV_BLACK);
+        /*
         switch (get_highest_layer(layer_state|default_layer_state)) {
         case 0:
-            layer_number = qp_load_image_mem(gfx_0);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_0, HSV_BLACK);
+            
             break;
         case 1:
-            layer_number = qp_load_image_mem(gfx_1);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_1, HSV_BLACK);
             break;
         case 2:
-            layer_number = qp_load_image_mem(gfx_2);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_2, HSV_BLACK);
             break;
         case 3:
-            layer_number = qp_load_image_mem(gfx_3);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_3, HSV_BLACK);
             break;
         case 4:
-            layer_number = qp_load_image_mem(gfx_4);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_4, HSV_BLACK);
             break;
         case 5:
-            layer_number = qp_load_image_mem(gfx_5);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_5, HSV_BLACK);
             break;
         case 6:
-            layer_number = qp_load_image_mem(gfx_6);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_6, HSV_BLACK);
             break;
         case 7:
-            layer_number = qp_load_image_mem(gfx_7);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_7, HSV_BLACK);
             break;
         default:
-            layer_number = qp_load_image_mem(gfx_undef);
-            qp_drawimage_recolor(lcd_surface, 5, 5, layer_number, HSV_LAYER_UNDEF, HSV_BLACK);
+            break;
         }
-        qp_close_image(layer_number);
+        */
         last_layer_state = layer_state;
         first_run_layer = true;
     }

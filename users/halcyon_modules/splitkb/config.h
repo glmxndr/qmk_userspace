@@ -43,17 +43,40 @@
     k0G, k0F, k0E, k0D, k0C, k0B,                                k5B, k5C, k5D, k5E, k5F, k5G, \
     k1G, k1F, k1E, k1D, k1C, k1B,                                k6B, k6C, k6D, k6E, k6F, k6G, \
     k2G, k2F, k2E, k2D, k2C, k2B,    k3D, k2A,      k7A, k8D,    k7B, k7C, k7D, k7E, k7F, k7G, \
-                      k3E, k3C, k3B, k3F, k3A,      k8A, k8F, k8B, k8C, k8E,                   \
-                      k4A, k4B, k4C, k4D, k4E,      k9A, k9B, k9C, k9D, k9E                    \
+                      k3E, k3C, k3B, k3F, k3A,      k8A, k8F, k8B, k8C, k8E \
 ) { \
-    {KC_NO, k0B, k0C, k0D, k0E, k0F,   k0G}, \
-    {KC_NO, k1B, k1C, k1D, k1E, k1F,   k1G}, \
-    {k2A,   k2B, k2C, k2D, k2E, k2F,   k2G}, \
-    {k3A,   k3B, k3C, k3D, k3E, k3F,   KC_NO}, \
-    {k4A,   k4B, k4C, k4D, k4E, KC_NO, KC_NO}, \
-    {KC_NO, k5B, k5C, k5D, k5E, k5F,   k5G}, \
-    {KC_NO, k6B, k6C, k6D, k6E, k6F,   k6G}, \
-    {k7A,   k7B, k7C, k7D, k7E, k7F,   k7G}, \
-    {k8A,   k8B, k8C, k8D, k8E, k8F,   KC_NO}, \
-    {k9A,   k9B, k9C, k9D, k9E, KC_NO, KC_NO} \
+    {KC_NO, k0B,   k0C,   k0D,   k0E,   k0F,   k0G}, \
+    {KC_NO, k1B,   k1C,   k1D,   k1E,   k1F,   k1G}, \
+    {k2A,   k2B,   k2C,   k2D,   k2E,   k2F,   k2G}, \
+    {k3A,   k3B,   k3C,   k3D,   k3E,   k3F,   KC_NO}, \
+    {KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO}, \
+    {KC_NO, k5B,   k5C,   k5D,   k5E,   k5F,   k5G}, \
+    {KC_NO, k6B,   k6C,   k6D,   k6E,   k6F,   k6G}, \
+    {k7A,   k7B,   k7C,   k7D,   k7E,   k7F,   k7G}, \
+    {k8A,   k8B,   k8C,   k8D,   k8E,   k8F,   KC_NO}, \
+    {KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO} \
 }
+
+#define COLOR_BASE          0x00, 0x00, 0x00  // Black
+#define COLOR_BASE_DIM      0x44, 0x44, 0x44  // Light gray
+
+#define COLOR_SYMBOLS       0xFF, 0x66, 0x00  // Bright orange
+#define COLOR_SYMBOLS_DIM   0x7F, 0x33, 0x00
+
+#define COLOR_NUMPAD        0x66, 0x66, 0xFF  // Soft blue-violet
+#define COLOR_NUMPAD_DIM    0x33, 0x33, 0x7F
+
+#define COLOR_NUMBERS       0x00, 0x99, 0xCC  // Medium cyan blue
+#define COLOR_NUMBERS_DIM   0x00, 0x4C, 0x66
+
+#define COLOR_ARROWS        0x66, 0xCC, 0x33  // Lime green
+#define COLOR_ARROWS_DIM    0x33, 0x66, 0x19
+
+#define COLOR_MOUSE         0xCC, 0x33, 0x99  // Magenta pink
+#define COLOR_MOUSE_DIM     0x66, 0x19, 0x4C
+
+#define COLOR_MEDIA         0x33, 0x99, 0x66  // Teal green
+#define COLOR_MEDIA_DIM     0x19, 0x4C, 0x33
+
+#define COLOR_SPECIAL       0xFF, 0xCC, 0x00  // Gold/yellow
+#define COLOR_SPECIAL_DIM   0x7F, 0x66, 0x00
