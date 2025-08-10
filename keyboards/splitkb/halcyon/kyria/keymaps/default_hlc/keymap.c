@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_GRAVE,
       KC_RCTL, S_A,     G_S,     A_D,     C_F,     KC_G,                                             KC_H,    C_J,     A_K,     G_L,     S_SC,    KC_QUOT,
       QK_LEAD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    QK_LOCK, TO_BAS,       KC_UP,   KC_DOWN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_CIRC,
-                                 KC_MENU, MOU_TAB, ARR_SPC, I3_ENT,  MED_ESC,      SPE_LFT, NUM_RGHT,SYM_BSP, PAD_DEL, KC_INS
+                                 KC_MENU, MOU_TAB, ARR_SPC, KC_ENT,  MED_ESC,      SPE_LFT, NUM_RGHT,SYM_BSP, PAD_DEL, KC_INS
     ),
 
     [_SYMBOLS] = LAYOUT_split_3x6_5_hlc(
@@ -31,14 +31,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     ),
   
-    [_NUMBERS] = LAYOUT_split_3x6_5_hlc(
+    [_NUMPAD] = LAYOUT_split_3x6_5_hlc(
       _______, KC_F12,  KC_F11,  KC_F10,  KC_F9,   KC_PERC,                                          KC_LT,   KC_7,    KC_8,    KC_9,    KC_PLUS, KC_ASTR,
       _______, S_F8,    G_F7,    A_F6,    C_F5,    KC_0,                                             KC_0,    C_4,     A_5,     G_6,     S_DOT,   KC_MINS,
       _______, KC_F4,   KC_F3,   KC_F2,   KC_F1,   KC_COMM, _______, _______,      _______, _______, KC_GT,   KC_1,    KC_2,    KC_3,    KC_EQL,  KC_SLSH,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     ),
 
-    [_NUMPAD] = LAYOUT_split_3x6_5_hlc(
+    [_NUMBERS] = LAYOUT_split_3x6_5_hlc(
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR , KC_PERC,                                          KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
       _______, S_1,     G_2,     A_3,     C_4,     KC_5,                                             KC_6,    C_7,     A_8,     G_9,     S_0,     KC_F12,
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______,      _______, _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
@@ -95,7 +95,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ),
 };
 
-//#ifdef LEADER_ENABLE
 void leader_start_user(void) {}
 
 void leader_end_user(void) {
@@ -108,7 +107,6 @@ void leader_end_user(void) {
     
 }
 
-//#endif
 #define COLOR_BASE          0x00, 0x00, 0x00  // Black
 #define COLOR_BASE_DIM      0x44, 0x44, 0x44  // Light gray
 
@@ -158,8 +156,8 @@ bool rgb_matrix_indicators_user(void) {
         case _SPECIAL:
             rgb_matrix_set_color_all(COLOR_SPECIAL_DIM);
             break;
-        default:
-            break;
+        default: 
+            rgb_matrix_set_color_all(COLOR_BASE);
     }
 
 
@@ -185,4 +183,3 @@ bool rgb_matrix_indicators_user(void) {
 
     return false;
 }
-//#endif

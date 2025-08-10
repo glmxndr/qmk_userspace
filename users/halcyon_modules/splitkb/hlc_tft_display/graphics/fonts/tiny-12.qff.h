@@ -5,11 +5,11 @@
 //    format         | mono2
 //    unicode_glyphs | 
 //    output         | fonts
-//    input          | tiny-16.png
+//    input          | tiny-12.png
 
 #pragma once
 
 #include <qp.h>
 
-extern const uint32_t font_tiny_16_length;
-extern const uint8_t  font_tiny_16[2073];
+extern const uint32_t font_tiny_12_length;
+extern const uint8_t  font_tiny_12[1474];

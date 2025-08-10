@@ -7,4 +7,4 @@
 #== Tell what this subcommand does here:
 #help: Add helpful description here.
 
-sudo rm "$PROJECT_HOME"/build/failed.log.*
+rm "$PROJECT_HOME"/build/failed.log.*

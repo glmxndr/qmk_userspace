@@ -7,7 +7,6 @@
 #define TO_ARR    TT(_ARROWS)
 #define TO_MSE    TT(_MOUSE)
 #define I3_MENU   LT(_SPECIAL,KC_MENU)
-#define I3_ENT    LT(_SPECIAL, KC_ENT)
 
 #define ARR_TAB   LT(_ARROWS, KC_TAB)
 #define ARR_SPC   LT(_ARROWS, KC_SPC)
