@@ -48,28 +48,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ARROWS] = LAYOUT_split_3x6_5_hlc(
       _______, KC_PASTE,KC_NO,   KC_CUT,  KC_COPY, KC_NO,                                            KC_NO,   KC_HOME, KC_UP,   KC_END,  KC_PGUP, KC_NO,
       _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_NO,                                            KC_NO,   KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_NO,
-      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO  , QK_BOOT, _______, _______,      _______, _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO  , _______, _______,      _______, _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     ),
 
     [_MOUSE] = LAYOUT_split_3x6_5_hlc(
-      _______, S_INS,   KC_NO,   KC_NO,   C_INS,   KC_NO,                                            KC_WH_U, KC_WH_L, KC_MS_U, KC_WH_R, KC_ACL0, KC_NO,
-      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_NO,                                            KC_WH_D, KC_MS_L, KC_MS_D, KC_MS_R, KC_ACL0, KC_NO,
-      _______, KC_ACL0, KC_ACL0, KC_ACL0, KC_ACL0, KC_NO,   _______, _______,      _______, _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_ACL0, KC_NO,
+      _______, S_INS,   KC_NO,   KC_NO,   C_INS,   KC_NO,                                            KC_WH_U, KC_WH_L, KC_MS_U, KC_WH_R, KC_ACL2, KC_NO,
+      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, LCTL(KC_BTN1),                                    KC_WH_D, KC_MS_L, KC_MS_D, KC_MS_R, KC_ACL1, KC_NO,
+      _______, KC_NO,   KC_BTN3, KC_BTN2, KC_BTN1, KC_NO,   _______, _______,      _______, _______, KC_BTN4, KC_BTN1, KC_BTN2, KC_BTN3, KC_ACL0, KC_NO,
                                  _______, _______, _______, _______, _______,      _______, KC_BTN3, KC_BTN1, KC_BTN2, _______
     ),
 
     [_MEDIA] = LAYOUT_split_3x6_5_hlc(
-      _______, KC_NO,   KC_NO,   KC_PASTE,KC_COPY, KC_CUT,                                           KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, KC_VOLU, KC_NO,
+      _______, KC_NO,   KC_PASTE,KC_COPY, KC_CUT,  KC_NO,                                            KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, KC_VOLU, KC_NO,
       _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_NO,                                            A_LEFT,  C_TAB,   SC_TAB,  A_RGHT,  KC_VOLD, KC_NO,
       _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   _______, _______,      _______, _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MUTE, KC_NO,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     ),
 
     [_SPECIAL] = LAYOUT_split_3x6_5_hlc(
-      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                            KC_INS,  KC_LNUM, KC_LCAP, KC_LSCR, KC_PAUSE,_______,
-      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_NO,                                            KC_TAB,  KC_SPC,  KC_ENT,  KC_BSPC, KC_DEL,  _______,
-      _______, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   _______, _______,      _______, _______, KC_PSCR, KC_MENU, _______, _______, _______, _______,
+      _______, KC_NO,   KC_NO,   DM_REC2, DM_REC1, KC_NO,                                            KC_INS,  KC_LNUM, KC_LCAP, KC_LSCR, KC_PAUSE,QK_BOOT,
+      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, DM_RSTP,                                          KC_TAB,  KC_SPC,  KC_ENT,  KC_BSPC, KC_DEL,  _______,
+      _______, KC_NO,   KC_NO,   DM_PLY2, DM_PLY1, KC_NO,   _______, _______,      _______, _______, KC_PSCR, KC_MENU, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     )
 // /*
@@ -176,9 +176,10 @@ bool rgb_matrix_indicators_user(void) {
 
     // === Right side
     #ifdef HLC_CIRQUE_TRACKPAD
-        rgb_matrix_set_color(9, COLOR_SYMBOLS);
-        rgb_matrix_set_color(8, COLOR_NUMBERS);
-        rgb_matrix_set_color(7, COLOR_SPECIAL);
+        rgb_matrix_set_color(8, COLOR_NUMPAD);
+        rgb_matrix_set_color(8, COLOR_SYMBOLS);
+        rgb_matrix_set_color(7, COLOR_NUMBERS);
+        rgb_matrix_set_color(6, COLOR_SPECIAL);
     #endif
 
     return false;

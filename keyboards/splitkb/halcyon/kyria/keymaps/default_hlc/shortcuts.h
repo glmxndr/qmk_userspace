@@ -54,7 +54,8 @@
 #define C_LBRK    CTL_T(KC_LBRK) 
 #define C_P4      CTL_T(KC_P4)
 #define C_LBRC    CTL_T(KC_LBRC)
-  
+
+#define C_ENT     LCTL(KC_ENT)
 #define C_INS     LCTL(KC_INSERT)
 #define C_TAB     LCTL(KC_TAB)
   
