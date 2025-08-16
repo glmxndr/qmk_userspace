@@ -11,8 +11,8 @@ enum layers {
     _MOUSE,
     _MEDIA,
     _SPECIAL,
+    _I3WM,
 };
-
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -20,8 +20,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x6_5_hlc(
       KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_GRAVE,
       KC_RCTL, S_A,     G_S,     A_D,     C_F,     KC_G,                                             KC_H,    C_J,     A_K,     G_L,     S_SC,    KC_QUOT,
-      QK_LEAD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    QK_LOCK, TO_BAS,       KC_UP,   KC_DOWN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_CIRC,
-                                 KC_MENU, MOU_TAB, ARR_SPC, KC_ENT,  MED_ESC,      SPE_LFT, NUM_RGHT,SYM_BSP, PAD_DEL, KC_INS
+      QK_LEAD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    QK_LOCK, TO_BAS,       KC_BTN1, KC_BTN2, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_CIRC,
+                                 KC_MENU, MOU_TAB, ARR_SPC, I3_ENT,  MED_ESC,      SPE_LFT, NUM_RGHT,SYM_BSP, PAD_DEL, KC_INS
     ),
 
     [_SYMBOLS] = LAYOUT_split_3x6_5_hlc(
@@ -67,9 +67,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_SPECIAL] = LAYOUT_split_3x6_5_hlc(
-      _______, KC_NO,   KC_NO,   DM_REC2, DM_REC1, KC_NO,                                            KC_INS,  KC_LNUM, KC_LCAP, KC_LSCR, KC_PAUSE,QK_BOOT,
-      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, DM_RSTP,                                          KC_TAB,  KC_SPC,  KC_ENT,  KC_BSPC, KC_DEL,  _______,
-      _______, KC_NO,   KC_NO,   DM_PLY2, DM_PLY1, KC_NO,   _______, _______,      _______, _______, KC_PSCR, KC_MENU, _______, _______, _______, _______,
+      _______, KC_NO,   KC_NO,   DM_REC2, DM_REC1, KC_NO,                                            KC_INS,  KC_NUM,  KC_CAPS, KC_SCRL, KC_PAUSE,QK_BOOT,
+      _______, KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, DM_RSTP,                                          KC_TAB,  KC_SPC,  KC_ENT,  KC_BSPC, KC_DEL,  KC_NO,
+      _______, KC_NO,   KC_NO,   DM_PLY2, DM_PLY1, KC_NO,   _______, _______,      _______, _______, KC_PSCR, KC_MENU, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+                                 _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
+    ),
+
+    [_I3WM] = LAYOUT_split_3x6_5_hlc(
+      _______, WM_S1,   WM_S2,   WM_S3,   WM_S4,   WM_S5,                                            WM_ENT,  WM_SLEFT,WM_UP,   WM_SRGHT,WM_SUP,  WM_SE,
+      _______, WM_1,    WM_2,    WM_3,    WM_4,    WM_5,                                             WM_D,    WM_LEFT, WM_DOWN, WM_RGHT, WM_SDOWN,WM_SR,
+      _______, WM_Z,    WM_V,    WM_H,    WM_E,    WM_S,    _______, _______,      _______, _______, WM_SD,   WM_SQ,   WM_SSPC, WM_F,    WM_P,    WM_C,
                                  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______
     )
 // /*
@@ -144,6 +151,9 @@ bool rgb_matrix_indicators_user(void) {
         case _NUMBERS:
             rgb_matrix_set_color_all(COLOR_NUMBERS_DIM);
             break;
+        case _NUMPAD:
+            rgb_matrix_set_color_all(COLOR_NUMPAD_DIM);
+            break;
         case _ARROWS:
             rgb_matrix_set_color_all(COLOR_ARROWS_DIM);
             break;
@@ -155,6 +165,9 @@ bool rgb_matrix_indicators_user(void) {
             break;
         case _SPECIAL:
             rgb_matrix_set_color_all(COLOR_SPECIAL_DIM);
+            break;
+        case _I3WM:
+            rgb_matrix_set_color_all(COLOR_I3WM_DIM);
             break;
         default: 
             rgb_matrix_set_color_all(COLOR_BASE);
@@ -171,12 +184,13 @@ bool rgb_matrix_indicators_user(void) {
         rgb_matrix_set_color(11, COLOR_BASE_DIM);
         rgb_matrix_set_color(9, COLOR_MOUSE);
         rgb_matrix_set_color(8, COLOR_ARROWS);
+        rgb_matrix_set_color(7, COLOR_I3WM);
         rgb_matrix_set_color(6, COLOR_MEDIA);
     #endif
 
     // === Right side
     #ifdef HLC_CIRQUE_TRACKPAD
-        rgb_matrix_set_color(8, COLOR_NUMPAD);
+        rgb_matrix_set_color(9, COLOR_NUMPAD);
         rgb_matrix_set_color(8, COLOR_SYMBOLS);
         rgb_matrix_set_color(7, COLOR_NUMBERS);
         rgb_matrix_set_color(6, COLOR_SPECIAL);

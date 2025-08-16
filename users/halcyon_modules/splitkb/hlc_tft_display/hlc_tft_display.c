@@ -19,7 +19,7 @@
 #define GRID_LIGH 0x0, 0x0, 0xC0
 #define GRID_DARK 0x0, 0x30, 0x30
 #define XOFFSET 0
-#define MAX_LAYERS 8
+#define MAX_LAYERS 9
 #define LEFT_ROWS 3
 #define RIGHT_ROWS 3
 #define LEFT_COLS 5
@@ -118,8 +118,47 @@ static const char *keymaps[MAX_LAYERS][LEFT_ROWS + RIGHT_ROWS][RIGHT_COLS] = {
         { "ins", "nmL", "cpL", "scL", "POS", "BUT" },
         { "tab", "spc", "ent", "<=",  "del", ""    },
         { "psc", "men", "",    "",    "",    ""    },
+    },
+    // Layer 8 - I3WM
+    {
+        { "S1",  "S2",  "S3",  "S4",  "S5"  },
+        { "1",   "2",   "3",   "4",   "5"   },
+        { "z",   "v",   "h",   "e",   "s"   },
+
+        { "ent", "S<",  "^",   "S>", "S^",  "E"  },
+        { "d",   "<",   "v",   ">",  "Sv",  "R"  },
+        { "D",   "Q",   "SPC", "f",  "p",   "c"  },
     }
 };
+
+hsv_t rgb_to_hsv(rgb_t rgb) {
+    hsv_t hsv = {0,0,0};
+    uint8_t rgb_min, rgb_max;
+    rgb_min = MIN(rgb.r, MIN(rgb.g, rgb.b));
+    rgb_max = MAX(rgb.r, MAX(rgb.g, rgb.b));
+    hsv.v = rgb_max;
+    if (hsv.v == 0) {
+        hsv.h = 0;
+        hsv.s = 0;
+        return hsv;
+    }
+    hsv.s = 255 * (long)(rgb_max - rgb_min) / hsv.v;
+    if (hsv.s == 0) {
+        hsv.h = 0;
+        return hsv;
+    }
+    if (rgb_max == rgb.r) {
+        hsv.h = 0 + 43 * (rgb.g - rgb.b) / (rgb_max - rgb_min);
+    } else if (rgb_max == rgb.g) {
+        hsv.h = 85 + 43 * (rgb.b - rgb.r) / (rgb_max - rgb_min);
+    } else {
+        hsv.h = 171 + 43 * (rgb.r - rgb.g) / (rgb_max - rgb_min);
+    }
+    if (hsv.h > 255) {
+        hsv.h += 256; // Ensure hue wraps properly
+    }
+    return hsv;
+}
 
 static void pad_to_width(const char *src, char *dest) {
     size_t len = strlen(src);
@@ -222,30 +261,43 @@ void update_display(void) {
     }
 
     if(last_layer_state != layer_state || first_run_layer == false) {
+        hsv_t c;
         switch (get_highest_layer(layer_state|default_layer_state)) {
         case 0:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 0 BASE      ", HSV_WHITE, HSV_BLACK);
-            break; 
+            c = rgb_to_hsv((rgb_t){ COLOR_BASE });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 0 BASE      ", c.h, c.s, c.v, HSV_BLACK);
+            break;
         case 1:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 1 SYMBOLS   ", HSV_WHITE, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_SYMBOLS });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 1 SYMBOLS   ", c.h, c.s, c.v, HSV_BLACK);
             break;
         case 2:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 2 NUMPAD    ", COLOR_NUMPAD, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_NUMPAD });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 2 NUMPAD    ", c.h, c.s, c.v, HSV_BLACK);
             break;
         case 3:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 3 NUMBERS   ", COLOR_NUMBERS, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_NUMBERS });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 3 NUMBERS   ", c.h, c.s, c.v, HSV_BLACK);
             break;
         case 4:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 4 ARROWS    ", COLOR_ARROWS, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_ARROWS });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 4 ARROWS    ", c.h, c.s, c.v, HSV_BLACK);
             break;
         case 5:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 5 MOUSE     ", COLOR_MOUSE, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_MOUSE });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 5 MOUSE     ", c.h, c.s, c.v, HSV_BLACK);
             break;
         case 6:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 6 MEDIA     ", COLOR_MEDIA, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_MEDIA });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 6 MEDIA     ", c.h, c.s, c.v, HSV_BLACK);
             break;
         case 7:
-            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 7 SPECIAL   ", COLOR_SPECIAL, HSV_BLACK);
+            c = rgb_to_hsv((rgb_t){ COLOR_SPECIAL });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 7 SPECIAL   ", c.h, c.s, c.v, HSV_BLACK);
+            break;
+        case 8:
+            c = rgb_to_hsv((rgb_t){ COLOR_I3WM });
+            qp_drawtext_recolor(lcd_surface, XOFFSET, line_height, dafont, "LAYER - 8 I3WM      ", c.h, c.s, c.v, HSV_BLACK);
             break;
         }
         draw_layer(get_highest_layer(layer_state | default_layer_state));
